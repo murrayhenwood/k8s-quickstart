@@ -46,7 +46,7 @@ wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation
 sudo nano calico.yaml
 
 #Create our kubernetes cluster, specifying a pod network range matching that in calico.yaml!
-sudo kubeadm init --pod-network-cidr=10.64.0.0/10
+sudo kubeadm init --pod-network-cidr=<POD_NETWORK_CIDR>
 
 ##############################################################
 # Keep the "kubeadm join..." command that is printed at the end of the previous command's result 
