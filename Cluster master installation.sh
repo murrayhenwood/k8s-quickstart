@@ -42,8 +42,11 @@ sudo systemctl enable docker.service
 wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
 wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 
-#Look inside calico.yaml and find the network range, adjust if needed.
+#Look inside calico.yaml and find the network range.
 sudo nano calico.yaml
+
+#           - name: CALICO_IPV4POOL_CIDR
+#             value: "192.168.0.0/16"   <<< Change this to mtch your <POD_NETWORK_CIDR>
 
 #Create our kubernetes cluster, specifying a pod network range matching that in calico.yaml!
 sudo kubeadm init --pod-network-cidr=<POD_NETWORK_CIDR>
