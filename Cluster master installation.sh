@@ -38,11 +38,18 @@ sudo systemctl status docker.service
 
 #Ensure both are set to start when the system starts up.
 sudo systemctl enable kubelet.service
+
 sudo systemctl enable docker.service
 
 #Only on the master, download the yaml files for the pod network
 wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
 wget https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+
+
+# newer script
+curl https://docs.projectcalico.org/manifests/calico.yaml -O
+
+
 
 #Look inside calico.yaml and find the network range.
 sudo nano calico.yaml
@@ -50,8 +57,13 @@ sudo nano calico.yaml
 #           - name: CALICO_IPV4POOL_CIDR
 #             value: "192.168.0.0/16"   <<< Change this to mtch your <POD_NETWORK_CIDR>
 
+# OR use the following line to do a find and replace 
+POD_CIDR="<your-pod-cidr>" \
+sed -i -e "s?192.168.0.0/16?$POD_CIDR?g" calico.yaml
+
 #Create our kubernetes cluster, specifying a pod network range matching that in calico.yaml!
 sudo kubeadm init --pod-network-cidr=<POD_NETWORK_CIDR>
+# This will take some time to complete
 
 ##############################################################
 # Keep the "kubeadm join..." command that is printed at the end of the previous command's result 
@@ -72,14 +84,15 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+# Apply the downloaed yaml files for your pod network
+kubectl apply -f calico.yaml
+
+
 
 ##############################################################
 # Setup the child nodes now  
 ##############################################################
 
-# Apply the downloaed yaml files for your pod network
-kubectl apply -f rbac-kdd.yaml
-kubectl apply -f calico.yaml
 
 ##############################################################
 # Notes
