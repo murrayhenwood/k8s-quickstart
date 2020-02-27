@@ -1,0 +1,38 @@
+
+
+
+# Download
+# wget
+
+# EDIT
+
+# Apply 
+# kubectl apply -f letsencrypt-clusterissuers.yaml
+# Remove
+# kubectl delete -f letsencrypt-clusterissuers.yaml
+
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: acme-letsencrypt-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: someone@example.com
+    privateKeySecretRef:
+      name: acme-letsencrypt-staging
+    http01: {}
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: acme-letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: someone@example.com
+    privateKeySecretRef:
+      name: acme-letsencrypt-prod
+    http01: {}
+---
