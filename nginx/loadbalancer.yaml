@@ -23,5 +23,11 @@ spec:
     targetPort: 443
     protocol: TCP
     name: https
+  externalIPs:
+    - 10.10.2.1
+    - 10.10.2.2
+    - 10.10.2.3
+    - 10.10.2.4
+    - 10.10.2.5
   selector:
     app: nginx-ingress
