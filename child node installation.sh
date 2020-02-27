@@ -25,17 +25,19 @@ sudo apt-get update
 apt-cache policy kubelet | head -n 20 
 
 #Install the required packages, if needed we can request a specific version
-sudo apt-get install -y docker.io kubelet kubeadm kubectl
+sudo apt-get install -y docker.io kubelet kubeadm
 
-sudo apt-mark hold docker.io kubelet kubeadm kubectl
+sudo apt-mark hold docker.io kubelet kubeadm
 
 #Check the status of our kubelet and our container runtime, docker.
 #The kubelet will enter a crashloop until it's joined
 sudo systemctl status kubelet.service 
+
 sudo systemctl status docker.service 
 
 #Ensure both are set to start when the system starts up.
 sudo systemctl enable kubelet.service
+
 sudo systemctl enable docker.service
 
 ##############################################################
