@@ -5,7 +5,11 @@
 
 
 # Download
-# wget 
+# wget https://raw.githubusercontent.com/murrayhenwood/k8s-quickstart/master/k8s-dashboard.yaml
+# Apply
+# kubectl apply --validate=false -f k8s-dashboard.yaml
+# Remove
+# kubectl delete -f k8s-dashboard.yaml
 
 
 
