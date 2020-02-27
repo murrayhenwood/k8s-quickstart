@@ -5,6 +5,7 @@
 # wget https://raw.githubusercontent.com/murrayhenwood/k8s-quickstart/master/letsencrypt-clusterissuers.yaml
 
 # EDIT
+# sudo nano letsencrypt-clusterissuers.yaml
 
 # Apply 
 # kubectl apply -f letsencrypt-clusterissuers.yaml
