@@ -2,7 +2,7 @@
 
 
 # Download
-# wget
+# wget https://raw.githubusercontent.com/murrayhenwood/k8s-quickstart/master/letsencrypt-clusterissuers.yaml
 
 # EDIT
 
