@@ -1,0 +1,27 @@
+
+
+# Source: https://github.com/nginxinc/kubernetes-ingress/blob/master/deployments/service/loadbalancer.yaml
+
+# kubectl apply -f ngix/loadbalancer.yaml
+
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress
+  namespace: nginx-ingress
+spec:
+  externalTrafficPolicy: Local
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: https
+  selector:
+    app: nginx-ingress
