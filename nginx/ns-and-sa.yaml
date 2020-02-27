@@ -1,0 +1,14 @@
+# Source: https://github.com/nginxinc/kubernetes-ingress/blob/master/deployments/common/ns-and-sa.yaml
+
+# kubectl apply -f nginx/ns-and-sa.yaml
+  
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx-ingress 
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx-ingress 
+  namespace: nginx-ingress
