@@ -6,7 +6,11 @@
 #       command above else you will receive a validation error relating to the x-kubernetes-preserve-unknown-fields field in 
 #       cert-manager’s CustomResourceDefinition resources. This is a benign error and occurs due to the way kubectl performs resource validation.
 
+# Download 
+# wget https://raw.githubusercontent.com/murrayhenwood/k8s-quickstart/master/cert-manager.yaml
+# Apply
 # kubectl apply --validate=false -f cert-manager.yaml
+# Remove
 # kubectl delete -f cert-manager.yaml
 
 # Validate using 
