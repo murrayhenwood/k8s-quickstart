@@ -1,5 +1,5 @@
 
-
+# NOTE this assumes that you will be using Nginx as the inress engine
 
 # Download
 # wget https://raw.githubusercontent.com/murrayhenwood/k8s-quickstart/master/letsencrypt-clusterissuers.yaml
@@ -23,7 +23,10 @@ spec:
     email: someone@example.com
     privateKeySecretRef:
       name: acme-letsencrypt-staging
-    http01: {}
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
 ---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
@@ -35,5 +38,8 @@ spec:
     email: someone@example.com
     privateKeySecretRef:
       name: acme-letsencrypt-prod
-    http01: {}
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
 ---
